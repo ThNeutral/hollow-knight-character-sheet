@@ -1,0 +1,142 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+p {
+  margin: 0;
+}
+
+#sheet {
+  width: 1080px;
+}
+
+#name {
+  margin-top: 20px;
+  align-items: center;
+  height: 40px;
+}
+
+#name-input {
+  width: 300px;
+}
+
+#milestone {
+  margin-top: 10px;
+  align-items: center;
+}
+
+#milestone-input {
+  width: 32px;
+  height: 24px;
+}
+
+#small-advancement-input {
+  width: 28px;
+  height: 24px;
+}
+
+#small-advancement-input-placeholder {
+  height: 24px;
+  z-index: 1;
+}
+
+#size {
+  margin-top: 10px;
+  margin-left: 20px;
+  align-items: center;
+}
+
+#size-big,
+#size-medium,
+#size-small {
+  height: 20px;
+  cursor: pointer;
+}
+
+#size-big {
+  width: 60px;
+}
+
+#size-medium {
+  width: 40px;
+}
+
+#size-small {
+  width: 20px;
+}
+
+#player {
+  margin-left: 40px;
+  margin-top: 20px;
+  align-items: center;
+  height: 40px;
+}
+
+#player-input {
+  margin-top: 5px;
+}
+
+#image {
+  height: 400px;
+  width: 250px;
+}
+
+#main-stats {
+  margin-left: 10px;
+  word-break: break-all;
+  width: 200px;
+}
+
+.size-selected {
+  background-color: #aaa;
+}
+
+.path1,
+.path2,
+.path3,
+.path4,
+.path5,
+.path6 {
+  cursor: pointer;
+}
+
+.path-selected {
+  background-color: #aaa;
+}
+
+.border {
+  border: 2px solid black;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-big {
+  font-size: 40px;
+}
+
+.text-medium {
+  font-size: 20px;
+}
+
+.text-small {
+  font-size: 8px;
+  color: #aaa;
+}
+
+.input-big {
+  all: unset;
+  border-bottom: 2px solid black;
+  font-size: 20px;
+  height: 25px;
+  margin: 0 10px;
+  margin-top: 5px;
+}

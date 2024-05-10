@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/index.css" />
+    <title>Лист персонажа</title>
+  </head>
+  <body>
+    <form id="sheet">
+      <div class="row" style="justify-content: center; margin: 30px">
+        <input id="user-input" />
+        <button id="user-input-button" type="button">
+          Загрузить информацию
+        </button>
+      </div>
+      <div class="row">
+        <div id="name" class="row">
+          <p id="name-text" class="text-big">Имя</p>
+          <input name="name" id="name-input" class="input-big" />
+        </div>
+        <div id="milestone" class="column centered">
+          <p id="milestone-text" class="text-medium">Веха</p>
+          <input id="milestone-input" name="milestone" class="border" />
+          <input
+            id="small-advancement-input"
+            name="small-advancement"
+            class="border text-small"
+            placeholder="Малое Прод."
+          />
+        </div>
+        <div id="size" class="column">
+          <p id="size-text" class="text-medium">Размер</p>
+          <div id="size-big" class="sizes border size-selected"></div>
+          <div id="size-medium" class="sizes border"></div>
+          <div id="size-small" class="sizes border"></div>
+        </div>
+        <div id="player" class="row">
+          <p id="player-text" class="text-big">Игрок</p>
+          <input name="player" id="player-input" class="input-big" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <p id="image-text" class="text-medium">Рисунок жука</p>
+          <div class="column border" id="image">
+            <input id="image-input" type="file" />
+          </div>
+        </div>
+        <div class="column" id="main-stats">
+          <div class="main-stat">
+            <p class="text-big">Мощь</p>
+            <input id="power" />
+            <input id="power-temp" placeholder="Врем." />
+          </div>
+          <div class="main-stat">
+            <p class="text-big">Проницательность</p>
+            <input id="insight" />
+            <input id="insight-temp" placeholder="Врем." />
+          </div>
+          <div class="main-stat">
+            <p class="text-big">Панцирь</p>
+            <input id="shell" />
+            <input id="shell-temp" placeholder="Врем." />
+          </div>
+          <div class="main-stat">
+            <p class="text-big">Грация</p>
+            <input id="grace" />
+            <input id="grace-temp" placeholder="Врем." />
+          </div>
+        </div>
+        <div class="column">
+          <div class="row" style="margin: 10px">
+            <div style="margin: 10px; width: 177px">
+              <p class="text-big">Сердце</p>
+              <input id="heart-current" placeholder="Текущий" />
+              <input id="heart-max" placeholder="Макс." />
+              <input id="heart-temp" placeholder="Временный" />
+            </div>
+            <div style="margin: 10px; width: 177px">
+              <p class="text-big">Душа</p>
+              <input id="soul-current" placeholder="Текущий" />
+              <input id="soul-max" placeholder="Макс." />
+              <input id="soul-temp" placeholder="Временный" />
+            </div>
+            <div style="margin: 10px; width: 177px">
+              <p class="text-big">Выносливость</p>
+              <input id="stamina-current" placeholder="Текущий" />
+              <input id="stamine-max" placeholder="Макс." />
+              <input id="stamina-temp" placeholder="Временный" />
+            </div>
+          </div>
+          <div class="row" style="margin: 10px">
+            <div style="margin: 10px; width: 177px">
+              <input id="custom1-name" placeholder="Свой запас" />
+              <input id="custom1-current" placeholder="Текущий" />
+              <input id="custom1-max" placeholder="Макс." />
+              <input id="custom1-temp" placeholder="Временный" />
+            </div>
+            <div style="margin: 10px; width: 177px">
+              <input id="custom2-name" placeholder="Свой запас" />
+              <input id="custom2-current" placeholder="Текущий" />
+              <input id="custom2-max" placeholder="Макс." />
+              <input id="custom2-temp" placeholder="Временный" />
+            </div>
+            <div style="margin: 10px; width: 177px">
+              <input id="custom3-name" placeholder="Свой запас" />
+              <input id="custom3-current" placeholder="Текущий" />
+              <input id="custom3-max" placeholder="Макс." />
+              <input id="custom3-temp" placeholder="Временный" />
+            </div>
+          </div>
+          <div class="row" style="margin: 10px">
+            <div style="margin: 10px; width: 130px">
+              <p>Привлекательность</p>
+              <input id="attractiveness" style="width: 130px" />
+            </div>
+            <div style="margin: 10px; width: 40px">
+              <p>Жуть</p>
+              <input id="creepiness" style="width: 40px" />
+            </div>
+            <div style="margin: 10px; width: 65px">
+              <p>Скорость</p>
+              <input
+                id="speed-current"
+                placeholder="Текущий"
+                style="width: 65px"
+              />
+              <input id="speed-max" placeholder="Макс." style="width: 65px" />
+            </div>
+            <div style="margin: 10px; width: 70px">
+              <p>Манёвр</p>
+              <input id="maneuver" style="width: 70px" />
+            </div>
+            <div style="margin: 10px; width: 80px">
+              <p>Сытость</p>
+              <input
+                id="satiety-current"
+                placeholder="Текущий"
+                style="width: 65px"
+              />
+              <input id="satiety-max" placeholder="Макс." style="width: 65px" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <p class="text-big" style="margin-top: 10px">Описание</p>
+          <textarea
+            id="description"
+            style="width: 500px; height: 300px"
+          ></textarea>
+        </div>
+        <div class="column" style="margin-left: 20px">
+          <p class="text-big" style="margin-top: 10px">Пути</p>
+          <div class="row">
+            <input id="path1" />
+            <div class="column">
+              <p style="margin-left: 10px">Ранг путей</p>
+              <div class="row">
+                <div
+                  id="path1-1"
+                  style="width: 30px; height: 30px; margin: 3px"
+                  class="path1 border path-selected"
+                ></div>
+                <div
+                  id="path1-2"
+                  style="width: 30px; height: 30px; margin: 3px"
+                  class="path1 border"
+                ></div>
+                <div
+                  id="path1-3"
+                  style="width: 30px; height: 30px; margin: 3px"
+                  class="path1 border"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <input id="path2" />
+            <div class="column">
+              <p style="margin-left: 10px">Ранг путей</p>
+              <div class="row">
+                <div
+                  id="path2-1"
+                  style="width: 30px; height: 30px; margin: 3px"
+                  class="path2 border path-selected"
+                ></div>
+                <div
+                  id="path2-2"
+                  style="width: 30px; height: 30px; margin: 3px"
+                  class="path2 border"
+                ></div>
+                <div
+                  id="path2-3"
+                  style="width: 30px; height: 30px; margin: 3px"
+                  class="path2 border"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <input id="path3" />
+            <div class="column">
+              <p style="margin-left: 10px">Ранг путей</p>
+              <div class="row">
+                <div
+                  id="path3-1"
+                  style="width: 30px; height: 30px; margin: 3px"
+                  class="path3 border path-selected"
+                ></div>
+                <div
+                  id="path3-2"
+                  style="width: 30px; height: 30px; margin: 3px"
+                  class="path3 border"
+                ></div>
+                <div
+                  id="path3-3"
+                  style="width: 30px; height: 30px; margin: 3px"
+                  class="path3 border"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <input id="path4" />
+            <div class="column">
+              <p style="margin-left: 10px">Ранг путей</p>
+              <div class="row">
+                <div
+                  id="path4-1"
+                  style="width: 30px; height: 30px; margin: 3px"
+                  class="path4 border path-selected"
+                ></div>
+                <div
+                  id="path4-2"
+                  style="width: 30px; height: 30px; margin: 3px"
+                  class="path4 border"
+                ></div>
+                <div
+                  id="path4-3"
+                  style="width: 30px; height: 30px; margin: 3px"
+                  class="path4 border"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <input id="path5" />
+            <div class="column">
+              <p style="margin-left: 10px">Ранг путей</p>
+              <div class="row">
+                <div
+                  id="path5-1"
+                  style="width: 30px; height: 30px; margin: 3px"
+                  class="path5 border path-selected"
+                ></div>
+                <div
+                  id="path5-2"
+                  style="width: 30px; height: 30px; margin: 3px"
+                  class="path5 border"
+                ></div>
+                <div
+                  id="path5-3"
+                  style="width: 30px; height: 30px; margin: 3px"
+                  class="path5 border"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <input id="path6" />
+            <div class="column">
+              <p style="margin-left: 10px">Ранг путей</p>
+              <div class="row">
+                <div
+                  id="path6-1"
+                  style="width: 30px; height: 30px; margin: 3px"
+                  class="path6 border path-selected"
+                ></div>
+                <div
+                  id="path6-2"
+                  style="width: 30px; height: 30px; margin: 3px"
+                  class="path6 border"
+                ></div>
+                <div
+                  id="path6-3"
+                  style="width: 30px; height: 30px; margin: 3px"
+                  class="path6 border"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <p style="margin: 10px 0" class="text-big">Черта</p>
+          <div class="row">
+            <input style="width: 300px" id="trait1" />
+            <div class="column" style="margin-left: 10px">
+              <p>Прив.</p>
+              <input
+                id="trait1-attractivness"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+            <div class="column" style="margin-left: 10px">
+              <p>Жуть</p>
+              <input
+                id="trait1-creepiness"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+            <div class="column" style="margin-left: 10px">
+              <p>Голод</p>
+              <input
+                id="trait1-hunger"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input style="width: 300px" id="trait2" />
+            <div class="column" style="margin-left: 10px">
+              <p>Прив.</p>
+              <input
+                id="trait2-attractivness"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+            <div class="column" style="margin-left: 10px">
+              <p>Жуть</p>
+              <input
+                id="trait2-creepiness"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+            <div class="column" style="margin-left: 10px">
+              <p>Голод</p>
+              <input
+                id="trait2-hunger"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input style="width: 300px" id="trait3" />
+            <div class="column" style="margin-left: 10px">
+              <p>Прив.</p>
+              <input
+                id="trait3-attractivness"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+            <div class="column" style="margin-left: 10px">
+              <p>Жуть</p>
+              <input
+                id="trait3-creepiness"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+            <div class="column" style="margin-left: 10px">
+              <p>Голод</p>
+              <input
+                id="trait3-hunger"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input style="width: 300px" id="trait4" />
+            <div class="column" style="margin-left: 10px">
+              <p>Прив.</p>
+              <input
+                id="trait4-attractivness"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+            <div class="column" style="margin-left: 10px">
+              <p>Жуть</p>
+              <input
+                id="trait4-creepiness"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+            <div class="column" style="margin-left: 10px">
+              <p>Голод</p>
+              <input
+                id="trait4-hunger"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input style="width: 300px" id="trait5" />
+            <div class="column" style="margin-left: 10px">
+              <p>Прив.</p>
+              <input
+                id="trait5-attractivness"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+            <div class="column" style="margin-left: 10px">
+              <p>Жуть</p>
+              <input
+                id="trait5-creepiness"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+            <div class="column" style="margin-left: 10px">
+              <p>Голод</p>
+              <input
+                id="trait5-hunger"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input style="width: 300px" id="trait6" />
+            <div class="column" style="margin-left: 10px">
+              <p>Прив.</p>
+              <input
+                id="trait6-attractivness"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+            <div class="column" style="margin-left: 10px">
+              <p>Жуть</p>
+              <input
+                id="trait6-creepiness"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+            <div class="column" style="margin-left: 10px">
+              <p>Голод</p>
+              <input
+                id="trait6-hunger"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input style="width: 300px" id="trait7" />
+            <div class="column" style="margin-left: 10px">
+              <p>Прив.</p>
+              <input
+                id="trait7-attractivness"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+            <div class="column" style="margin-left: 10px">
+              <p>Жуть</p>
+              <input
+                id="trait7-creepiness"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+            <div class="column" style="margin-left: 10px">
+              <p>Голод</p>
+              <input
+                id="trait7-hunger"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input style="width: 300px" id="trait8" />
+            <div class="column" style="margin-left: 10px">
+              <p>Прив.</p>
+              <input
+                id="trait8-attractivness"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+            <div class="column" style="margin-left: 10px">
+              <p>Жуть</p>
+              <input
+                id="trait8-creepiness"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+            <div class="column" style="margin-left: 10px">
+              <p>Голод</p>
+              <input
+                id="trait8-hunger"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input style="width: 300px" id="trait9" />
+            <div class="column" style="margin-left: 10px">
+              <p>Прив.</p>
+              <input
+                id="trait9-attractivness"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+            <div class="column" style="margin-left: 10px">
+              <p>Жуть</p>
+              <input
+                id="trait9-creepiness"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+            <div class="column" style="margin-left: 10px">
+              <p>Голод</p>
+              <input
+                id="trait9-hunger"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input style="width: 300px" id="trait10" />
+            <div class="column" style="margin-left: 10px">
+              <p>Прив.</p>
+              <input
+                id="trait10-attractivness"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+            <div class="column" style="margin-left: 10px">
+              <p>Жуть</p>
+              <input
+                id="trait10-creepiness"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+            <div class="column" style="margin-left: 10px">
+              <p>Голод</p>
+              <input
+                id="trait10-hunger"
+                type="number"
+                style="height: 30px; width: 30px; border: 1px solid black"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="column" style="margin-left: 70px">
+          <div class="row">
+            <p class="text-big">Надетые амулеты</p>
+            <div style="margin: 10px" class="column">
+              <p class="text-medium">Метки</p>
+              <input
+                id="marks"
+                style="width: 50px; height: 30px; border: 2px solid black"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input id="amulet1" style="width: 200px" />
+            <input
+              id="amulet1-marks"
+              style="
+                width: 50px;
+                height: 30px;
+                border: 2px solid black;
+                margin-left: 20px;
+              "
+            />
+          </div>
+          <div class="row">
+            <input id="amulet2" style="width: 200px" />
+            <input
+              id="amulet2-marks"
+              style="
+                width: 50px;
+                height: 30px;
+                border: 2px solid black;
+                margin-left: 20px;
+              "
+            />
+          </div>
+          <div class="row">
+            <input id="amulet3" style="width: 200px" />
+            <input
+              id="amulet3-marks"
+              style="
+                width: 50px;
+                height: 30px;
+                border: 2px solid black;
+                margin-left: 20px;
+              "
+            />
+          </div>
+          <div class="row">
+            <input id="amulet4" style="width: 200px" />
+            <input
+              id="amulet4-marks"
+              style="
+                width: 50px;
+                height: 30px;
+                border: 2px solid black;
+                margin-left: 20px;
+              "
+            />
+          </div>
+          <div class="row">
+            <input id="amulet5" style="width: 200px" />
+            <input
+              id="amulet5-marks"
+              style="
+                width: 50px;
+                height: 30px;
+                border: 2px solid black;
+                margin-left: 20px;
+              "
+            />
+          </div>
+          <div class="row">
+            <input id="amulet6" style="width: 200px" />
+            <input
+              id="amulet6-marks"
+              style="
+                width: 50px;
+                height: 30px;
+                border: 2px solid black;
+                margin-left: 20px;
+              "
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 20px">
+        <div class="column">
+          <p class="text-big">Снаряжение</p>
+          <div class="row">
+            <input id="equipment1" style="width: 300px" />
+            <div class="column">
+              <p style="margin-left: 20px">Вес</p>
+              <input
+                id="equipment1-weight"
+                style="
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid black;
+                  margin-left: 20px;
+                "
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input id="equipment2" style="width: 300px" />
+            <div class="column">
+              <p style="margin-left: 20px">Вес</p>
+              <input
+                id="equipment2-weight"
+                style="
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid black;
+                  margin-left: 20px;
+                "
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input id="equipment3" style="width: 300px" />
+            <div class="column">
+              <p style="margin-left: 20px">Вес</p>
+              <input
+                id="equipment3-weight"
+                style="
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid black;
+                  margin-left: 20px;
+                "
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input id="equipment4" style="width: 300px" />
+            <div class="column">
+              <p style="margin-left: 20px">Вес</p>
+              <input
+                id="equipment4-weight"
+                style="
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid black;
+                  margin-left: 20px;
+                "
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input id="equipment5" style="width: 300px" />
+            <div class="column">
+              <p style="margin-left: 20px">Вес</p>
+              <input
+                id="equipment5-weight"
+                style="
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid black;
+                  margin-left: 20px;
+                "
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input id="equipment6" style="width: 300px" />
+            <div class="column">
+              <p style="margin-left: 20px">Вес</p>
+              <input
+                id="equipment6-weight"
+                style="
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid black;
+                  margin-left: 20px;
+                "
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input id="equipment7" style="width: 300px" />
+            <div class="column">
+              <p style="margin-left: 20px">Вес</p>
+              <input
+                id="equipment7-weight"
+                style="
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid black;
+                  margin-left: 20px;
+                "
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input id="equipment8" style="width: 300px" />
+            <div class="column">
+              <p style="margin-left: 20px">Вес</p>
+              <input
+                id="equipment8-weight"
+                style="
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid black;
+                  margin-left: 20px;
+                "
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input id="equipment9" style="width: 300px" />
+            <div class="column">
+              <p style="margin-left: 20px">Вес</p>
+              <input
+                id="equipment9-weight"
+                style="
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid black;
+                  margin-left: 20px;
+                "
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input id="equipment10" style="width: 300px" />
+            <div class="column">
+              <p style="margin-left: 20px">Вес</p>
+              <input
+                id="equipment10-weight"
+                style="
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid black;
+                  margin-left: 20px;
+                "
+              />
+            </div>
+          </div>
+        </div>
+        <div class="column" style="margin-left: 160px">
+          <div class="row">
+            <p class="text-big">Техника</p>
+            <p class="text-medium" style="margin-top: 15px; margin-left: 75px">
+              Ячейки техники:
+            </p>
+            <input
+              id="techniques-slots"
+              style="width: 50px; height: 15px; margin-top: 15px"
+            />
+          </div>
+          <div class="row">
+            <input id="technique1" style="width: 300px" />
+            <div class="column">
+              <input
+                id="technique1-slots"
+                style="
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid black;
+                  margin-left: 20px;
+                "
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input id="technique2" style="width: 300px" />
+            <div class="column">
+              <input
+                id="technique2-slots"
+                style="
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid black;
+                  margin-left: 20px;
+                "
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input id="technique3" style="width: 300px" />
+            <div class="column">
+              <input
+                id="technique3-slots"
+                style="
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid black;
+                  margin-left: 20px;
+                "
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input id="technique4" style="width: 300px" />
+            <div class="column">
+              <input
+                id="technique4-slots"
+                style="
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid black;
+                  margin-left: 20px;
+                "
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input id="technique5" style="width: 300px" />
+            <div class="column">
+              <input
+                id="technique5-slots"
+                style="
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid black;
+                  margin-left: 20px;
+                "
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input id="technique6" style="width: 300px" />
+            <div class="column">
+              <input
+                id="technique6-slots"
+                style="
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid black;
+                  margin-left: 20px;
+                "
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input id="technique7" style="width: 300px" />
+            <div class="column">
+              <input
+                id="technique7-slots"
+                style="
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid black;
+                  margin-left: 20px;
+                "
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input id="technique8" style="width: 300px" />
+            <div class="column">
+              <input
+                id="technique8-slots"
+                style="
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid black;
+                  margin-left: 20px;
+                "
+              />
+            </div>
+          </div>
+          <div class="row">
+            <input id="technique9" style="width: 300px" />
+            <div class="column">
+              <input
+                id="technique9-slots"
+                style="
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid black;
+                  margin-left: 20px;
+                "
+              />
+            </div>
+          </div>
+          <div class="row" style="margin-top: 20px">
+            <p class="text-medium">Пояс</p>
+            <input
+              id="belt"
+              style="
+                width: 50px;
+                height: 30px;
+                border: 1px solid black;
+                margin-left: 20px;
+              "
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 20px">
+        <div class="column">
+          <p class="text-big">Оружие и Щиты</p>
+          <div class="row">
+            <input id="weapon1-name" style="width: 200px" />
+            <div class="column" style="margin-left: 20px">
+              <p>Вес</p>
+              <input id="weapon1-weight" style="width: 30px; height: 30px" />
+            </div>
+            <div class="column" style="margin-left: 20px">
+              <p>Урон</p>
+              <input id="weapon1-damage" style="width: 30px; height: 30px" />
+            </div>
+            <div class="column" style="margin-left: 20px">
+              <p>Дальность</p>
+              <input id="weapon1-range" style="width: 30px; height: 30px" />
+            </div>
+            <div class="column" style="margin-left: 20px">
+              <p>Качество</p>
+              <input id="weapon1-quality" style="width: 30px; height: 30px" />
+            </div>
+          </div>
+          <div class="row">
+            <input id="weapon2-name" style="width: 200px" />
+            <div class="column" style="margin-left: 20px">
+              <p>Вес</p>
+              <input id="weapon2-weight" style="width: 30px; height: 30px" />
+            </div>
+            <div class="column" style="margin-left: 20px">
+              <p>Урон</p>
+              <input id="weapon2-damage" style="width: 30px; height: 30px" />
+            </div>
+            <div class="column" style="margin-left: 20px">
+              <p>Дальность</p>
+              <input id="weapon2-range" style="width: 30px; height: 30px" />
+            </div>
+            <div class="column" style="margin-left: 20px">
+              <p>Качество</p>
+              <input id="weapon2-quality" style="width: 30px; height: 30px" />
+            </div>
+          </div>
+          <div class="row">
+            <input id="weapon3-name" style="width: 200px" />
+            <div class="column" style="margin-left: 20px">
+              <p>Вес</p>
+              <input id="weapon3-weight" style="width: 30px; height: 30px" />
+            </div>
+            <div class="column" style="margin-left: 20px">
+              <p>Урон</p>
+              <input id="weapon3-damage" style="width: 30px; height: 30px" />
+            </div>
+            <div class="column" style="margin-left: 20px">
+              <p>Дальность</p>
+              <input id="weapon3-range" style="width: 30px; height: 30px" />
+            </div>
+            <div class="column" style="margin-left: 20px">
+              <p>Качество</p>
+              <input id="weapon3-quality" style="width: 30px; height: 30px" />
+            </div>
+          </div>
+          <div class="row">
+            <input id="weapon4-name" style="width: 200px" />
+            <div class="column" style="margin-left: 20px">
+              <p>Вес</p>
+              <input id="weapon4-weight" style="width: 30px; height: 30px" />
+            </div>
+            <div class="column" style="margin-left: 20px">
+              <p>Урон</p>
+              <input id="weapon4-damage" style="width: 30px; height: 30px" />
+            </div>
+            <div class="column" style="margin-left: 20px">
+              <p>Дальность</p>
+              <input id="weapon4-range" style="width: 30px; height: 30px" />
+            </div>
+            <div class="column" style="margin-left: 20px">
+              <p>Качество</p>
+              <input id="weapon4-quality" style="width: 30px; height: 30px" />
+            </div>
+          </div>
+          <div class="row">
+            <input id="weapon5-name" style="width: 200px" />
+            <div class="column" style="margin-left: 20px">
+              <p>Вес</p>
+              <input id="weapon5-weight" style="width: 30px; height: 30px" />
+            </div>
+            <div class="column" style="margin-left: 20px">
+              <p>Урон</p>
+              <input id="weapon5-damage" style="width: 30px; height: 30px" />
+            </div>
+            <div class="column" style="margin-left: 20px">
+              <p>Дальность</p>
+              <input id="weapon5-range" style="width: 30px; height: 30px" />
+            </div>
+            <div class="column" style="margin-left: 20px">
+              <p>Качество</p>
+              <input id="weapon5-quality" style="width: 30px; height: 30px" />
+            </div>
+          </div>
+          <div class="row" style="margin-top: 20px">
+            <p class="text-big">Броня</p>
+          </div>
+          <div class="row">
+            <input id="armour" style="width: 200px" />
+            <div class="column" style="margin-left: 20px">
+              <p>Качество</p>
+              <input id="armour-quality" style="width: 30px; height: 30px" />
+            </div>
+            <div class="column" style="margin-left: 20px">
+              <p>ПУ</p>
+              <input id="armour-resistance" style="width: 30px; height: 30px" />
+            </div>
+            <div class="column" style="margin-left: 20px">
+              <p>Прочность</p>
+              <input
+                id="armour-durabily-max"
+                style="width: 45px; height: 15px"
+                placeholder="Макс."
+              />
+              <input
+                id="armour-durabily-temp"
+                style="width: 45px; height: 15px"
+                placeholder="Текущ."
+              />
+            </div>
+          </div>
+          <div class="row" style="margin-top: 20px">
+            <div class="column">
+              <p class="text-medium">Валюта</p>
+              <input id="currency" />
+            </div>
+            <div class="column" style="margin-left: 20px">
+              <p class="text-medium">Общий вес/Нагрузка</p>
+              <div class="row">
+                <input id="overall-weight" style="width: 100px" />
+                <input id="load" style="width: 100px" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column" style="margin-left: 20px">
+          <p class="text-big">Умения</p>
+          <p class="text-medium">Ранг</p>
+          <input id="rank1" style="width: 30px; height: 30px" />
+          <div class="row" style="margin-top: 10px">
+            <input id="skill1" />
+            <div class="column" style="margin-left: 10px">
+              <p>Мастерство</p>
+              <input id="skill1-mastery" style="width: 30px" />
+            </div>
+          </div>
+          <div class="row" style="margin-top: 10px">
+            <input id="skill2" />
+            <div class="column" style="margin-left: 10px">
+              <p>Мастерство</p>
+              <input id="skill2-mastery" style="width: 30px" />
+            </div>
+          </div>
+          <div class="row" style="margin-top: 10px">
+            <input id="skill3" />
+            <div class="column" style="margin-left: 10px">
+              <p>Мастерство</p>
+              <input id="skill3-mastery" style="width: 30px" />
+            </div>
+          </div>
+          <div class="row" style="margin-top: 10px">
+            <input id="skill4" />
+            <div class="column" style="margin-left: 10px">
+              <p>Мастерство</p>
+              <input id="skill4-mastery" style="width: 30px" />
+            </div>
+          </div>
+          <p class="text-medium">Ранг</p>
+          <input id="rank2" style="width: 30px; height: 30px" />
+          <div class="row" style="margin-top: 10px">
+            <input id="skill5" />
+            <div class="column" style="margin-left: 10px">
+              <p>Мастерство</p>
+              <input id="skill5-mastery" style="width: 30px" />
+            </div>
+          </div>
+          <div class="row" style="margin-top: 10px">
+            <input id="skill6" />
+            <div class="column" style="margin-left: 10px">
+              <p>Мастерство</p>
+              <input id="skill6-mastery" style="width: 30px" />
+            </div>
+          </div>
+          <div class="row" style="margin-top: 10px">
+            <input id="skill7" />
+            <div class="column" style="margin-left: 10px">
+              <p>Мастерство</p>
+              <input id="skill7-mastery" style="width: 30px" />
+            </div>
+          </div>
+          <div class="row" style="margin-top: 10px">
+            <input id="skill8" />
+            <div class="column" style="margin-left: 10px">
+              <p>Мастерство</p>
+              <input id="skill8-mastery" style="width: 30px" />
+            </div>
+          </div>
+          <p class="text-medium">Ранг</p>
+          <input id="rank3" style="width: 30px; height: 30px" />
+          <div class="row" style="margin-top: 10px">
+            <input id="skill9" />
+            <div class="column" style="margin-left: 10px">
+              <p>Мастерство</p>
+              <input id="skill9-mastery" style="width: 30px" />
+            </div>
+          </div>
+          <div class="row" style="margin-top: 10px">
+            <input id="skill10" />
+            <div class="column" style="margin-left: 10px">
+              <p>Мастерство</p>
+              <input id="skill10-mastery" style="width: 30px" />
+            </div>
+          </div>
+          <div class="row" style="margin-top: 10px">
+            <input id="skill11" />
+            <div class="column" style="margin-left: 10px">
+              <p>Мастерство</p>
+              <input id="skill11-mastery" style="width: 30px" />
+            </div>
+          </div>
+          <div class="row" style="margin-top: 10px">
+            <input id="skill12" />
+            <div class="column" style="margin-left: 10px">
+              <p>Мастерство</p>
+              <input id="skill12-mastery" style="width: 30px" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="justify-content: center; margin-top: 30px">
+        <div class="column" style="align-items: center">
+          <p class="text-big">Заметки</p>
+          <textarea style="width: 1080px; height: 500px" id="notes"></textarea>
+        </div>
+      </div>
+      <div class="row" style="justify-content: center; margin-top: 20px">
+        <button type="button" id="save" class="text-big">
+          Сохранить в буфер обмена
+        </button>
+      </div>
+    </form>
+    <script src="./src/index.js"></script>
+  </body>
+</html>
