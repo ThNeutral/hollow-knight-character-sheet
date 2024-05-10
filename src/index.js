@@ -332,13 +332,26 @@ async function save() {
   console.log(json);
 
   navigator.clipboard.writeText(json);
-  window.localStorage.setItem("saved-character", json);
+  localStorage.setItem("saved-character", json);
 }
 
 document.getElementById("user-input-button").addEventListener("click", load);
 
-function load() {
+function loadFromInput() {
   let input = JSON.parse(document.getElementById("user-input").value);
+  load(input);
+}
+
+function loadFromLocalStorage() {
+  let input = JSON.parse(localStorage.getItem("saved-character"));
+  load(input);
+}
+
+try {
+  loadFromLocalStorage();
+} catch (err) {}
+
+function load(input) {
   console.log(input);
 
   for (let i of [0, 1, 2]) {
