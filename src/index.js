@@ -42,22 +42,32 @@ let traits = [
 ];
 let traitsNames = ["", "", "", "", "", "", "", "", "", ""];
 for (let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) {
-  let trait = [
-    document.getElementById("trait" + (i + 1).toString() + "-attractivness"),
-    document.getElementById("trait" + (i + 1).toString() + "-creepiness"),
-    document.getElementById("trait" + (i + 1).toString() + "-hunger"),
-  ];
-  createInputSet(traits, trait, i);
   document
-    .getElementById("trait" + (i + 1).toString())
+    .getElementById("trait" + (i + 1).toString() + "-attractivness")
     .addEventListener("change", (e) => {
-      traitsNames[i] = e.target.value;
+      traits[i][0] = e.target.value;
     });
+  document
+    .getElementById("trait" + (i + 1).toString() + "-creepiness")
+    .addEventListener("change", (e) => {
+      traits[i][1] = e.target.value;
+    });
+  document
+    .getElementById("trait" + (i + 1).toString() + "-hunger")
+    .addEventListener("change", (e) => {
+      traits[i][2] = e.target.value;
+    }),
+    document
+      .getElementById("trait" + (i + 1).toString())
+      .addEventListener("change", (e) => {
+        traitsNames[i] = e.target.value;
+      });
 }
 
 let maximumMarks = 0;
 document.getElementById("marks").addEventListener("change", (e) => {
-  maximumMarks = Number(e.target.value);
+  maximumMarks = e.target.value;
+  console.log(maximumMarks);
 });
 
 let amuletsNames = ["", "", "", "", "", ""];
@@ -71,7 +81,7 @@ for (let i of [0, 1, 2, 3, 4, 5]) {
   document
     .getElementById("amulet" + (i + 1).toString() + "-marks")
     .addEventListener("change", (e) => {
-      amuletsMarks[i] = Number(e.target.value);
+      amuletsMarks[i] = e.target.value;
     });
 }
 
@@ -86,7 +96,7 @@ for (let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) {
   document
     .getElementById("equipment" + (i + 1).toString() + "-weight")
     .addEventListener("change", (e) => {
-      equipmentMarks[i] = Number(e.target.value);
+      equipmentMarks[i] = e.target.value;
     });
 }
 
@@ -101,7 +111,7 @@ for (let i of [0, 1, 2, 3, 4, 5, 6, 7, 8]) {
   document
     .getElementById("equipment" + (i + 1).toString() + "-weight")
     .addEventListener("change", (e) => {
-      techniqueSlots[i] = Number(e.target.value);
+      techniqueSlots[i] = e.target.value;
     });
 }
 
@@ -122,22 +132,22 @@ for (let i of [0, 1, 2, 3, 4]) {
   document
     .getElementById("weapon" + (i + 1).toString() + "-weight")
     .addEventListener("change", (e) => {
-      weaponStats[i][0] = Number(e.target.value);
+      weaponStats[i][0] = e.target.value;
     });
   document
     .getElementById("weapon" + (i + 1).toString() + "-damage")
     .addEventListener("change", (e) => {
-      weaponStats[i][1] = Number(e.target.value);
+      weaponStats[i][1] = e.target.value;
     });
   document
     .getElementById("weapon" + (i + 1).toString() + "-range")
     .addEventListener("change", (e) => {
-      weaponStats[i][2] = Number(e.target.value);
+      weaponStats[i][2] = e.target.value;
     });
   document
     .getElementById("weapon" + (i + 1).toString() + "-quality")
     .addEventListener("change", (e) => {
-      weaponStats[i][3] = Number(e.target.value);
+      weaponStats[i][3] = e.target.value;
     });
 }
 
@@ -148,20 +158,20 @@ document.getElementById("armour").addEventListener("change", (e) => {
   armorName = e.target.value;
 });
 document.getElementById("armour-quality").addEventListener("change", (e) => {
-  armorStats[0] = Number(e.target.value);
+  armorStats[0] = e.target.value;
 });
 document.getElementById("armour-resistance").addEventListener("change", (e) => {
-  armorStats[1] = Number(e.target.value);
+  armorStats[1] = e.target.value;
 });
 document
   .getElementById("armour-durabily-max")
   .addEventListener("change", (e) => {
-    armorStats[2][0] = Number(e.target.value);
+    armorStats[2][0] = e.target.value;
   });
 document
   .getElementById("armour-durabily-temp")
   .addEventListener("change", (e) => {
-    armorStats[2][1] = Number(e.target.value);
+    armorStats[2][1] = e.target.value;
   });
 
 let ranks = [0, 0, 0];
@@ -169,7 +179,7 @@ for (let i of [0, 1, 2]) {
   document
     .getElementById("rank" + (i + 1).toString())
     .addEventListener("change", (e) => {
-      ranks[i] = Number(e.target.value);
+      ranks[i] = e.target.value;
     });
 }
 
@@ -179,12 +189,12 @@ for (let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) {
   document
     .getElementById("skill" + (i + 1).toString())
     .addEventListener("change", (e) => {
-      ranks[i] = e.target.value;
+      skills[i] = e.target.value;
     });
   document
     .getElementById("skill" + (i + 1).toString() + "-mastery")
     .addEventListener("change", (e) => {
-      ranks[i] = Number(e.target.value);
+      skillsMasteries[i] = e.target.value;
     });
 }
 
@@ -299,6 +309,8 @@ async function save() {
     maximumMarks,
     amuletsMarks,
     amuletsNames,
+    armorName,
+    armorStats,
     equipmentName,
     equipmentMarks,
     techniqueSlot,
@@ -320,6 +332,7 @@ async function save() {
   console.log(json);
 
   navigator.clipboard.writeText(json);
+  window.localStorage.setItem("saved-character", json);
 }
 
 document.getElementById("user-input-button").addEventListener("click", load);
@@ -328,10 +341,21 @@ function load() {
   let input = JSON.parse(document.getElementById("user-input").value);
   console.log(input);
 
+  for (let i of [0, 1, 2]) {
+    let classNames = sizes[i].className.split(" ");
+    if (classNames.length !== 3) continue;
+    classNames.pop();
+    sizes[i].className = classNames.join(" ");
+  }
+
+  sizes[input.currentSelectedSize].className =
+    sizes[input.currentSelectedSize].className + " size-selected";
+
   document.getElementById("name-input").value = input.nameValue;
 
   document.getElementById("milestone-input").value = input.milestones.big;
-  document.getElementById("milestone-input").value = input.milestones.small;
+  document.getElementById("small-advancement-input").value =
+    input.milestones.small;
 
   document.getElementById("player-input").value = input.gamer;
 
@@ -344,8 +368,8 @@ function load() {
   document.getElementById("shell").value = input.mainStats.shell.static;
   document.getElementById("shell-temp").value = input.mainStats.shell.temp;
 
-  document.getElementById("shell").value = input.mainStats.shell.static;
-  document.getElementById("shell-temp").value = input.mainStats.shell.temp;
+  document.getElementById("grace").value = input.mainStats.grace.static;
+  document.getElementById("grace-temp").value = input.mainStats.grace.temp;
 
   document.getElementById("heart-current").value = input.bars.heart.current;
   document.getElementById("heart-max").value = input.bars.heart.max;
@@ -356,7 +380,7 @@ function load() {
   document.getElementById("soul-temp").value = input.bars.soul.temp;
 
   document.getElementById("stamina-current").value = input.bars.stamina.current;
-  document.getElementById("stamina-max").value = input.bars.stamina.max;
+  document.getElementById("stamine-max").value = input.bars.stamina.max;
   document.getElementById("stamina-temp").value = input.bars.stamina.temp;
 
   document.getElementById("custom1-name").value = input.bars.custom1.name;
@@ -386,6 +410,66 @@ function load() {
   document.getElementById("satiety-max").value =
     input.secondaryStats.satiety.max;
 
+  document.getElementById("path1").value = input.pathRankNames[0];
+  let elements = document.getElementsByClassName("path1");
+  for (let i of [0, 1, 2]) {
+    let classNames = elements[i].className.split(" ");
+    if (classNames.length !== 3) continue;
+    classNames.pop();
+    elements[i].className = classNames.join(" ");
+  }
+  elements[input.pathRank[0]].className += " path-selected";
+
+  document.getElementById("path2").value = input.pathRankNames[1];
+  elements = document.getElementsByClassName("path2");
+  for (let i of [0, 1, 2]) {
+    let classNames = elements[i].className.split(" ");
+    if (classNames.length !== 3) continue;
+    classNames.pop();
+    elements[i].className = classNames.join(" ");
+  }
+  elements[input.pathRank[1]].className += " path-selected";
+
+  document.getElementById("path3").value = input.pathRankNames[2];
+  elements = document.getElementsByClassName("path3");
+  for (let i of [0, 1, 2]) {
+    let classNames = elements[i].className.split(" ");
+    if (classNames.length !== 3) continue;
+    classNames.pop();
+    elements[i].className = classNames.join(" ");
+  }
+  elements[input.pathRank[2]].className += " path-selected";
+
+  document.getElementById("path4").value = input.pathRankNames[3];
+  elements = document.getElementsByClassName("path4");
+  for (let i of [0, 1, 2]) {
+    let classNames = elements[i].className.split(" ");
+    if (classNames.length !== 3) continue;
+    classNames.pop();
+    elements[i].className = classNames.join(" ");
+  }
+  elements[input.pathRank[3]].className += " path-selected";
+
+  document.getElementById("path5").value = input.pathRankNames[4];
+  elements = document.getElementsByClassName("path5");
+  for (let i of [0, 1, 2]) {
+    let classNames = elements[i].className.split(" ");
+    if (classNames.length !== 3) continue;
+    classNames.pop();
+    elements[i].className = classNames.join(" ");
+  }
+  elements[input.pathRank[4]].className += " path-selected";
+
+  document.getElementById("path6").value = input.pathRankNames[5];
+  elements = document.getElementsByClassName("path6");
+  for (let i of [0, 1, 2]) {
+    let classNames = elements[i].className.split(" ");
+    if (classNames.length !== 3) continue;
+    classNames.pop();
+    elements[i].className = classNames.join(" ");
+  }
+  elements[input.pathRank[5]].className += " path-selected";
+
   document.getElementById("description").value = input.description;
 
   document.getElementById("techniques-slots").value = input.techniqueSlot;
@@ -399,12 +483,79 @@ function load() {
 
   document.getElementById("notes").value = input.notes;
 
+  for (let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) {
+    document.getElementById("trait" + (i + 1).toString()).value =
+      input.traitsNames[i];
+    document.getElementById(
+      "trait" + (i + 1).toString() + "-attractivness"
+    ).value = input.traits[i][0];
+    document.getElementById(
+      "trait" + (i + 1).toString() + "-creepiness"
+    ).value = input.traits[i][1];
+    document.getElementById("trait" + (i + 1).toString() + "-hunger").value =
+      input.traits[i][2];
+  }
+
+  for (let i of [0, 1, 2, 3, 4, 5]) {
+    document.getElementById("amulet" + (i + 1).toString()).value =
+      input.amuletsNames[i];
+    document.getElementById("amulet" + (i + 1).toString() + "-marks").value =
+      input.amuletsMarks[i];
+  }
+
+  for (let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) {
+    document.getElementById("equipment" + (i + 1).toString()).value =
+      input.equipmentName[i];
+    document.getElementById(
+      "equipment" + (i + 1).toString() + "-weight"
+    ).value = input.equipmentMarks[i];
+  }
+
+  for (let i of [0, 1, 2, 3, 4, 5, 6, 7, 8]) {
+    document.getElementById("technique" + (i + 1).toString()).value =
+      input.techniqueNames[i];
+    document.getElementById("technique" + (i + 1).toString() + "-slots").value =
+      input.techniqueSlots[i];
+  }
+
+  for (let i of [0, 1, 2, 3, 4]) {
+    document.getElementById("weapon" + (i + 1).toString() + "-name").value =
+      input.weaponName[i];
+    document.getElementById("weapon" + (i + 1).toString() + "-weight").value =
+      input.weaponStats[i][0];
+    document.getElementById("weapon" + (i + 1).toString() + "-damage").value =
+      input.weaponStats[i][1];
+    document.getElementById("weapon" + (i + 1).toString() + "-range").value =
+      input.weaponStats[i][2];
+    document.getElementById("weapon" + (i + 1).toString() + "-quality").value =
+      input.weaponStats[i][3];
+  }
+
+  for (let i of [0, 1, 2]) {
+    document.getElementById("rank" + (i + 1).toString()).value = input.ranks[i];
+  }
+
+  for (let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) {
+    document.getElementById("skill" + (i + 1).toString()).value =
+      input.skills[i];
+    document.getElementById("skill" + (i + 1).toString() + "-mastery").value =
+      input.skillsMasteries[i];
+  }
+
+  document.getElementById("armour").value = input.armorName;
+  document.getElementById("armour-quality").value = input.armorStats[0];
+  document.getElementById("armour-resistance").value = input.armorStats[1];
+  document.getElementById("armour-durabily-max").value = input.armorStats[2][0];
+  document.getElementById("armour-durabily-temp").value =
+    input.armorStats[2][1];
+
+  document.getElementById("marks").value = input.maximumMarks;
+
   currentSelectedSize = input.currentSelectedSize;
-
   image = input.image;
-
   pathRank = input.pathRank;
   pathRankNames = input.pathRankNames;
+  traits = input.traits;
   traitsNames = input.traitsNames;
   maximumMarks = input.maximumMarks;
   amuletsNames = input.amuletsNames;
@@ -417,6 +568,7 @@ function load() {
   weaponStats = input.weaponStats;
   armorName = input.armorName;
   armorStats = input.armorStats;
+  ranks = input.ranks;
   skills = input.skills;
   skillsMasteries = input.skillsMasteries;
 }
@@ -424,7 +576,7 @@ function load() {
 function createInputSet(arrValues, arrElements, index) {
   Array.from(arrElements).forEach((element, i) => {
     element.addEventListener("change", (e) => {
-      arrValues[index][i] = Number(e.target.value);
+      arrValues[index][i] = e.target.value;
       console.log(arrValues);
     });
   });
